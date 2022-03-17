@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #mouse {
+        display: inline-block;
+        cursor: pointer;
+        margin: 0;
+        position: absolute;
+        top: 30px;
+      }
+
+      #mouse:focus {
+        outline: 1px solid black;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p>Click on the mouse and move it with arrow keys.</p>
+
+    <pre id="mouse" tabindex="1">
+   _   _
+  (q\_/p)
+   /. .\
+  =\_t_/=   __
+   /   \   (
+  ((   ))   )
+  /\) (/\  /
+  \  Y  /-'
+   nn^nn
+  </pre
+    >
+
+    <script>
+      let index = false;
+      mouse.addEventListener("click", (e) => {
+        if (e.target.id === "mouse") {
+          console.log("true");
+          index = true;
+        } else {
+          console.log("false");
+          index = false;
+        }
+      });
+      mouse.addEventListener("keydown", (e) => {
+        if (index) {
+          switch (e.key) {
+            case "ArrowUp":
+              mouse.style.top = `${mouse.getBoundingClientRect().top - 10}px`;
+              break;
+            case "ArrowDown":
+              mouse.style.top = `${mouse.getBoundingClientRect().top + 10}px`;
+              break;
+            case "ArrowLeft":
+              mouse.style.left = `${mouse.getBoundingClientRect().left - 10}px`;
+              break;
+            case "ArrowRight":
+              mouse.style.left = `${mouse.getBoundingClientRect().left + 10}px`;
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

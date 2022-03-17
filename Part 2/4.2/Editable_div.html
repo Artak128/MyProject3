@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+     
+        .view {
+            display: block;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .view:focus {
+            outline: none;
+            border: 3px solid #0A70FFFF;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>Click the div to edit.</li>
+        <li>Enter or blur saves the result.</li>
+    </ul>
+
+    HTML is allowed.
+
+    <div id="view" class="view">Text</div>
+
+    <script>
+        let cacheDivInner = 'Text';
+        function textareaToDiv() {
+                cacheDivInner = document.querySelector('textarea').value;
+                let div = document.createElement('div');
+                div.className = 'view';
+                div.id = 'view';
+                div.innerHTML = cacheDivInner;
+                document.querySelector('.view').remove();
+                document.body.append(div);
+
+        }
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'view') {
+                let textarea = document.createElement('textarea');
+                textarea.className = 'view';
+                textarea.textContent = cacheDivInner;
+                document.querySelector('#view').remove();
+                document.body.append(textarea)
+                textarea.focus();
+            }
+        document.addEventListener('focusout', (e)=>{
+            if(e.target.tagName === 'TEXTAREA'){
+                textareaToDiv();
+            }
+        })
+        document.body.addEventListener('keydown',(e)=>{
+            if (e.key === 'Enter') {
+                textareaToDiv()
+            }
+            
+        })    
+
+        })
+
+    </script>
+
+</body>
+
+</html>
